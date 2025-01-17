@@ -2,7 +2,7 @@
 using Exiled.CustomItems.API;
 using Exploding_Coin.Items;
 using Player = Exiled.Events.Handlers.Player;
-
+using Server = Exiled.Events.Handlers.Server;
 
 namespace Exploding_Coin {
     public class PluginCore : Plugin<Config> {
@@ -19,10 +19,12 @@ namespace Exploding_Coin {
         }
         void BindEvents() {
             Player.FlippingCoin += Config.coin.OnFlippingCoin;
+            Server.RoundStarted += Config.coin.OnStarting;
         }
 
         void UnbindEvents() {
             Player.FlippingCoin -= Config.coin.OnFlippingCoin;
+            Server.RoundStarted -= Config.coin.OnStarting;
         }
         void RegisterItems() {
             Config.coin.Register();
