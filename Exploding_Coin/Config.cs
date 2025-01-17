@@ -9,10 +9,8 @@ namespace Exploding_Coin {
     public class Config : IConfig {
         public bool IsEnabled { get; set; } = true;
         public bool Debug { get; set; }
-
-        public Coin coin = new();
+        public Coin coin { get; set; } = new();
 
         public static int SpawnCount = 1;
-        public static Vector3 SpawnPos = Room.Get(RoomType.Hcz106).Position;
     }
 }

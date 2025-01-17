@@ -6,8 +6,11 @@ using Server = Exiled.Events.Handlers.Server;
 
 namespace Exploding_Coin {
     public class PluginCore : Plugin<Config> {
+        public static PluginCore Instance;
+        
         public override void OnEnabled() {
             base.OnEnabled();
+            Instance = this;
             BindEvents();
             RegisterItems();
         }
@@ -16,6 +19,7 @@ namespace Exploding_Coin {
             base.OnDisabled();
             UnbindEvents();
             UnregisterItems();
+            Instance = null;
         }
         void BindEvents() {
             Player.FlippingCoin += Config.coin.OnFlippingCoin;
@@ -27,6 +31,7 @@ namespace Exploding_Coin {
             Server.RoundStarted -= Config.coin.OnStarting;
         }
         void RegisterItems() {
+            Config.coin.Type = ItemType.Coin;
             Config.coin.Register();
         }
 

@@ -1,5 +1,4 @@
 C:\Users\Hugo Simpson\RiderProjects\Exploding_Coin\Exploding_Coin\bin\Debug\Exploding_Coin.dll
-C:\Users\Hugo Simpson\RiderProjects\Exploding_Coin\Exploding_Coin\bin\Debug\Exploding_Coin.pdb
 C:\Users\Hugo Simpson\RiderProjects\Exploding_Coin\Exploding_Coin\bin\Debug\Assembly-CSharp-firstpass.dll
 C:\Users\Hugo Simpson\RiderProjects\Exploding_Coin\Exploding_Coin\bin\Debug\Assembly-CSharp-Publicized.dll
 C:\Users\Hugo Simpson\RiderProjects\Exploding_Coin\Exploding_Coin\bin\Debug\CommandSystem.Core.dll
@@ -27,4 +26,3 @@ C:\Users\Hugo Simpson\RiderProjects\Exploding_Coin\Exploding_Coin\obj\Debug\Expl
 C:\Users\Hugo Simpson\RiderProjects\Exploding_Coin\Exploding_Coin\obj\Debug\Exploding_Coin.csproj.CoreCompileInputs.cache
 C:\Users\Hugo Simpson\RiderProjects\Exploding_Coin\Exploding_Coin\obj\Debug\Explodin.CF18ED55.Up2Date
 C:\Users\Hugo Simpson\RiderProjects\Exploding_Coin\Exploding_Coin\obj\Debug\Exploding_Coin.dll
-C:\Users\Hugo Simpson\RiderProjects\Exploding_Coin\Exploding_Coin\obj\Debug\Exploding_Coin.pdb
