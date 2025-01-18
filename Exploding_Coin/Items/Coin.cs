@@ -11,7 +11,6 @@ using UnityEngine;
 using Light = Exiled.API.Features.Toys.Light;
 using MEC;
 
-
 namespace Exploding_Coin.Items {
     [CustomItem(ItemType.Coin)]
     public class Coin : CustomItem {
@@ -21,13 +20,14 @@ namespace Exploding_Coin.Items {
         public override float Weight { get; set; } = 0.1f;
         public override SpawnProperties SpawnProperties { get; set; } = new();
         public override ItemType Type { get; set; } = ItemType.Coin;
+        
         public void OnFlippingCoin(FlippingCoinEventArgs ev) {
             if (Check(ev.Item)) {
                 if (!ev.IsTails) {
                     Timing.CallDelayed(2.5f, () => ev.Player.RandomTeleport<Room>());
-                }else if (ev.IsTails) {
+                } else if (ev.IsTails) {
                     Timing.CallDelayed(3f, () => { 
-                        Map.ExplodeEffect(ev.Player.Position, ProjectileType.FragGrenade );
+                        Map.ExplodeEffect(ev.Player.Position, ProjectileType.FragGrenade);
                         ev.Player.Kill("Tails, you die");
                     });
                 }
