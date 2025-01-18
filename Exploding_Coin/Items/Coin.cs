@@ -1,15 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Exiled.API.Enums;
+﻿using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Doors;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
-using UnityEngine;
-using Light = Exiled.API.Features.Toys.Light;
 using MEC;
+using UnityEngine;
 
 namespace Exploding_Coin.Items {
     [CustomItem(ItemType.Coin)]
@@ -21,16 +18,25 @@ namespace Exploding_Coin.Items {
         public override SpawnProperties SpawnProperties { get; set; } = new();
         public override ItemType Type { get; set; } = ItemType.Coin;
         
-        public void OnFlippingCoin(FlippingCoinEventArgs ev) {
-            if (Check(ev.Item)) {
-                if (!ev.IsTails) {
-                    Timing.CallDelayed(2.5f, () => ev.Player.RandomTeleport<Room>());
-                } else if (ev.IsTails) {
+        public void OnFlippingCoin(FlippingCoinEventArgs ev)
+        {
+            if (!Check(ev.Item)) return;
+            switch (ev.IsTails)
+            {
+                case false:
+                    Timing.CallDelayed(2.5f, () =>
+                    {
+                        Room randomRoom;
+                        do randomRoom = Room.Random(); while (randomRoom.Zone != ZoneType.Surface && Warhead.IsDetonated);
+                        ev.Player.Teleport(randomRoom);
+                    });
+                    break;
+                case true:
                     Timing.CallDelayed(3f, () => { 
                         Map.ExplodeEffect(ev.Player.Position, ProjectileType.FragGrenade);
                         ev.Player.Kill("Tails, you die");
                     });
-                }
+                    break;
             }
         }
 
