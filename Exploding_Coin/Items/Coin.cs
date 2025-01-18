@@ -14,6 +14,7 @@ using MEC;
 namespace Exploding_Coin.Items {
     [CustomItem(ItemType.Coin)]
     public class Coin : CustomItem {
+    
         public override uint Id { get; set; } = 69;
         public override string Name { get; set; } = "Coin?";
         public override string Description { get; set; } = "I think its a coin";
@@ -42,5 +43,6 @@ namespace Exploding_Coin.Items {
                 TrySpawn(Id, p, out _);
             }
         }
+        
     }
 }
