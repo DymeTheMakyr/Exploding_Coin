@@ -22,16 +22,29 @@ namespace Exploding_Coin.Items {
         public override ItemType Type { get; set; } = ItemType.Coin;
         
         public void OnFlippingCoin(FlippingCoinEventArgs ev) {
-            if (Check(ev.Item)) {
-                if (!ev.IsTails) {
-                    Timing.CallDelayed(2.5f, () => ev.Player.RandomTeleport<Room>());
-                } else if (ev.IsTails) {
-                    Timing.CallDelayed(3f, () => { 
-                        Map.ExplodeEffect(ev.Player.Position, ProjectileType.FragGrenade);
-                        ev.Player.Kill("Tails, you die");
-                    });
+            if (!Check(ev.Item)) return; 
+            
+            if (!ev.IsTails) {
+                Room randRoom;
+                int check = (Map.IsLczDecontaminated ? 1 : 0) + (Warhead.IsDetonated ? 1 : 0);
+                switch (check) {
+                    case 0:
+                        do randRoom = Room.Random(); while(Config.validZones.Contains(randRoom.Zone));
+                        break;
+                    case 1:
+                        do randRoom = Room.Random(); while(!Config.validZones.Contains(randRoom.Zone) && randRoom.Zone == ZoneType.LightContainment);
+                        break;
+                    case 2:
+                        randRoom = Room.Random(ZoneType.Surface);
+                        break;
                 }
+            } else {
+                Timing.CallDelayed(3f, () => { 
+                    Map.ExplodeEffect(ev.Player.Position, ProjectileType.FragGrenade);
+                    ev.Player.Kill("Tails, you die");
+                });
             }
+            
         }
 
         public void OnStarting() {

@@ -12,5 +12,12 @@ namespace Exploding_Coin {
         public Coin coin { get; set; } = new();
 
         public static int SpawnCount = 1;
+
+        public static ZoneType[] validZones = [
+            ZoneType.Entrance,
+            ZoneType.Surface,
+            ZoneType.HeavyContainment,
+            ZoneType.LightContainment
+        ];
     }
 }
