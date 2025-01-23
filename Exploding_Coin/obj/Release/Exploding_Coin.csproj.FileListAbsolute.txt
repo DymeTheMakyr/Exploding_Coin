@@ -28,3 +28,5 @@ C:\Users\Hugo Simpson\RiderProjects\Exploding_Coin\Exploding_Coin\obj\Release\Ex
 C:\Users\Hugo Simpson\RiderProjects\Exploding_Coin\Exploding_Coin\obj\Release\Explodin.CF18ED55.Up2Date
 C:\Users\Hugo Simpson\RiderProjects\Exploding_Coin\Exploding_Coin\obj\Release\Exploding_Coin.dll
 C:\Users\Hugo Simpson\RiderProjects\Exploding_Coin\Exploding_Coin\obj\Release\Exploding_Coin.pdb
+C:\Users\Hugo Simpson\RiderProjects\Exploding_Coin\Exploding_Coin\bin\Release\Mirror.dll
+C:\Users\Hugo Simpson\RiderProjects\Exploding_Coin\Exploding_Coin\bin\Release\UnityEngine.PhysicsModule.dll

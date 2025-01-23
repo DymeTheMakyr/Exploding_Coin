@@ -25,18 +25,27 @@ namespace Exploding_Coin.Items {
             if (!Check(ev.Item)) return; 
             
             if (!ev.IsTails) {
-                Room randRoom;
+                Room randRoom = ev.Player.CurrentRoom;
                 int check = (Map.IsLczDecontaminated ? 1 : 0) + (Warhead.IsDetonated ? 1 : 0);
                 switch (check) {
                     case 0:
-                        do randRoom = Room.Random(); while(Config.validZones.Contains(randRoom.Zone));
+                        do randRoom = Room.Random(); while(!Config.validZones.Contains(randRoom.Zone) || randRoom.Type == RoomType.EzShelter);
                         break;
                     case 1:
-                        do randRoom = Room.Random(); while(!Config.validZones.Contains(randRoom.Zone) && randRoom.Zone == ZoneType.LightContainment);
+                        do randRoom = Room.Random(); while(!Config.validZones.Contains(randRoom.Zone) || randRoom.Zone == ZoneType.LightContainment || randRoom.Type == RoomType.EzShelter);
                         break;
                     case 2:
                         randRoom = Room.Random(ZoneType.Surface);
                         break;
+                }
+
+                if (randRoom.Zone == ZoneType.Surface) {
+                    Door door;
+                    do door = randRoom.Doors.ToArray().RandomItem(); while (door.Type == DoorType.ElevatorGateA || door.Type == DoorType.ElevatorGateB);
+                    Timing.CallDelayed(2.5f, () => ev.Player.Teleport(door));
+                }
+                else {
+                    Timing.CallDelayed(2.5f, () => ev.Player.Teleport(randRoom));
                 }
             } else {
                 Timing.CallDelayed(3f, () => { 
